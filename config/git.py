@@ -20,4 +20,5 @@ def run():
     set_conf('alias.stat', 'status')
     set_conf('alias.st', 'status -s')
     set_conf('alias.co', 'checkout')
+    set_conf('push.default', 'simple')
     

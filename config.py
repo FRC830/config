@@ -27,7 +27,9 @@ else:
             raise ValueError(f + ': not found')
         run.append(f)
 
+cwd = os.getcwd()
 for f in run:
+    os.chdir(cwd)
     print('* Running script %s' % f)
     module = importlib.import_module('config.%s' % f)
     if not hasattr(module, 'run'):
