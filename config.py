@@ -19,7 +19,7 @@ valid = map(lambda x: x.replace('.py', ''),
         os.listdir('config')))
 
 run = []
-if args.all:
+if args.all or len(sys.argv) == 1:
     run = valid
 else:
     for f in files:
@@ -28,6 +28,8 @@ else:
         run.append(f)
 
 cwd = os.getcwd()
+print('* git pull')
+os.system('git pull')
 for f in run:
     os.chdir(cwd)
     print('* Running script %s' % f)
