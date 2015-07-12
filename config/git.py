@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-import subprocess
+import subprocess, sys
+
+cred_helpers = {
+    'win32': 'wincred',
+    'darwin': 'osxkeychain'
+}
 
 def conf(name):
     try:
@@ -10,6 +15,7 @@ def conf(name):
         return ''
 
 def set_conf(name, value):
+    print('  %s = %s' % (name, value))
     subprocess.call('git config --global'.split() + [name, value])
 
 def run():
@@ -21,5 +27,5 @@ def run():
     set_conf('alias.st', 'status -s')
     set_conf('alias.co', 'checkout')
     set_conf('push.default', 'simple')
-    set_conf('credential.helper', 'wincred')
+    set_conf('credential.helper', cred_helpers.get(sys.platform, 'cache'))
     
